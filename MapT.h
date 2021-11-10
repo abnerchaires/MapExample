@@ -1,7 +1,3 @@
-//
-// Created by Varick Erickson on 4/19/2021.
-//
-
 #ifndef MAPT_H
 #define MAPT_H
 
@@ -32,7 +28,7 @@ public:
     pair<K,T> GetNextPair();
 
 private:
-    forward_list<pair<K,T>>* buckets;   // Each node contains a key and value
+    forward_list<pair<K,T>>* buckets;   // Each node contains a key and value // Linked List
     int numBuckets;
     int numKeys;
 
