@@ -28,14 +28,13 @@ void MapT<K, T>::Add(K key, T value) {
         }
     }
 
-
+    // If the key does not already exist, add the key value pair.
     pair<K, T> keyValuePair;
     keyValuePair.first = key;
     keyValuePair.second = value;
 
     buckets[bucket].push_front(keyValuePair); // Places the new value in front of the linked list.
     ++numKeys;
-
 }
 
 template<class K, class T>
