@@ -16,6 +16,26 @@ MapT<K, T>::MapT() {
 template<class K, class T>
 void MapT<K, T>::Add(K key, T value) {
 
+    int bucket = GetHashIndex(key); // find bucket index.
+
+    // Look at each element in the link list of the bucket.
+    for(auto it = buckets[bucket].begin(); it != buckets[buckets].end(); ++it) {
+
+        // Found an item with the same key.
+        if (it->first == key) {
+            it->second = value; // set to the new value
+            return;
+        }
+    }
+
+
+    pair<K, T> keyValuePair;
+    keyValuePair.first = key;
+    keyValuePair.second = value;
+
+    buckets[bucket].push_front(keyValuePair); // Places the new value in front of the linked list.
+    ++numKeys;
+
 }
 
 template<class K, class T>
@@ -59,11 +79,11 @@ pair<K, T> MapT<K, T>::GetNextPair() {
 }
 
 template<class K, class T>
-        int MapT<K, T>::GetHashIndex(const K &key) {
-            unordered_map<K,T> mapper;
-            typename unordered_map<K,T>::hasher hashFunction = mapper.hash_function();
-            return static_cast<int>(hashFunction(key) % numBuckets);
-        }
+int MapT<K, T>::GetHashIndex(const K &key) {
+    unordered_map<K,T> mapper;
+    typename unordered_map<K,T>::hasher hashFunction = mapper.hash_function();
+    return static_cast<int>(hashFunction(key) % numBuckets);
+}
 
 
 
