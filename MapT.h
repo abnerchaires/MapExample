@@ -11,6 +11,9 @@ template<class K, class T>
 class MapT {
 public:
     MapT();
+    MapT(int numBuckets);
+
+    MapT<K, T> operator=(const MapT<K, T>& otherMap);
 
     void Add(K key, T value);
     void Remove(K key);
